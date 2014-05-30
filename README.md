@@ -2,7 +2,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 
-> Parse with aster.
+> Centralized code parsing for aster.
 
 ## Usage
 

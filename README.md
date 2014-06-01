@@ -32,6 +32,8 @@ var parse = require('aster-parse');
 parse.registerParser('.coffee', require('aster-parse-coffee'));
 ```
 
+Please note that parsers published under name in format `'aster-parse-<extension>'` do not require explicit registration.
+
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)

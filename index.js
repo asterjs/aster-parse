@@ -9,14 +9,17 @@ function parse(options) {
 	return function (files) {
 		return files
 			.groupBy(function (file) { return extname(file.path).toLowerCase() || '.' })
-			.flatMap(function (files) { return parsers[files.key](options)(files) });
+			.flatMap(function (files) {
+				var ext = files.key;
+				var parser = parsers[ext] || parse.registerParser(ext, require('aster-parse-' + ext.slice(1)));
+
+				return parser(options)(files);
+			});
 	};
 }
 
-parse.registerParser = function (extension, parser) {
-	parsers[extension.toLowerCase()] = parser;
+parse.registerParser = function (ext, parser) {
+	return parsers[ext.toLowerCase()] = parser;
 };
-
-parse.registerParser('.js', require('aster-parse-js'));
 
 module.exports = parse;
